@@ -21,3 +21,9 @@ CREATE TABLE species (id int generated always as identity,
     name varchar(50),
     primary key(id)
 );
+
+ALTER TABLE animals DROP COLUMN species;
+ALTER TABLE animals ADD COLUMN species_id INT;
+ALTER TABLE animals ADD FOREIGN KEY (species_id) REFERENCES species(id);
+ALTER TABLE animals ADD COLUMN owner_id INT;
+ALTER TABLE animals ADD FOREIGN KEY (owner_id) REFERENCES owners(id);
