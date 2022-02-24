@@ -16,3 +16,8 @@ CREATE TABLE owners (id int generated always as identity,
     age int,
     primary key(id)
 );
+
+CREATE TABLE species (id int generated always as identity,
+    name varchar(50),
+    primary key(id)
+);
