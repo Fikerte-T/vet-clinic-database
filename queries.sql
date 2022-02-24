@@ -152,3 +152,5 @@ SELECT species, AVG(escape_attempts) AS avg_escape_attempts FROM animals WHERE d
 ---------+--------------------
  pokemon | 3.0000000000000000
 (1 row)
+
+

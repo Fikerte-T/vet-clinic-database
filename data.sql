@@ -21,3 +21,10 @@ INSERT INTO owners (full_name, age) VALUES
 ('Jodie Whittaker', 38);
 
 INSERT INTO species(name) VALUES ('Pokemon'), ('Digimon');
+UPDATE animals SET species_id = 2 WHERE name LIKE '%mon';
+UPDATE animals SET species_id = 1 WHERE species_id IS NULL;
+UPDATE animals SET owner_id = 1 WHERE name = 'Agumon';
+UPDATE animals SET owner_id = 2 where name IN ('Gabumon', 'Pikachu');                
+UPDATE animals SET owner_id = 3 where name IN ('Devimon', 'Plantmon');
+UPDATE animals SET owner_id = 4 where name IN ('Charmander','Squirtle', 'Blossom');
+UPDATE animals SET owner_id = 5 where name IN ('Angemon','Boarmon');
