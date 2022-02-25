@@ -28,3 +28,8 @@ UPDATE animals SET owner_id = 2 where name IN ('Gabumon', 'Pikachu');
 UPDATE animals SET owner_id = 3 where name IN ('Devimon', 'Plantmon');
 UPDATE animals SET owner_id = 4 where name IN ('Charmander','Squirtle', 'Blossom');
 UPDATE animals SET owner_id = 5 where name IN ('Angemon','Boarmon');
+
+INSERT INTO vets (name, age, date_of_graduations) VALUES ('William Tatcher',45, '2000-04-23'),
+('Maisy Smith', 26, '2019-01-17'),
+('Stephanie Mendez', 64, '2008-05-04'), 
+('Jack Harkness', 38, '2008-06-08');
