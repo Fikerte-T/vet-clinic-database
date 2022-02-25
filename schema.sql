@@ -39,3 +39,8 @@ CREATE TABLE specialization (species_id int, vet_id int,
     FOREIGN KEY (species_id) REFERENCES species (id), 
     FOREIGN KEY (vet_id) REFERENCES vets(id)
 );
+
+create table visits (animal_id int, vet_id int, 
+foreign key(animal_id) references animals(id), 
+foreign key(vet_id) references vets(id)
+);
