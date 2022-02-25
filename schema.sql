@@ -40,7 +40,8 @@ CREATE TABLE specialization (species_id int, vet_id int,
     FOREIGN KEY (vet_id) REFERENCES vets(id)
 );
 
-create table visits (animal_id int, vet_id int, 
+CRETE TABLE visits (animal_id int, vet_id int, 
 foreign key(animal_id) references animals(id), 
 foreign key(vet_id) references vets(id)
 );
+ALTER TABLE visits add column date_of_visit date;
