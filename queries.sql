@@ -1,4 +1,4 @@
-/*Queries that provide answers to the questions from all projects.*/
+/*Queries that provide answers to the questions FROM all projects.*/
 
 SELECT * from animals WHERE name LIKE '%mon';
 SELECT name from animals WHERE date_of_birth BETWEEN '2016-01-01' AND '2019-01-01';
@@ -167,7 +167,7 @@ WHERE full_name = 'Melody Pond';
 
 /*List of all animals that are pokemon */
 
-select A.name, S.name as species_name from species S inner join animals A on S.id = A.species_id where S.name = 'Pokemon';
+select A.name, S.name as species_name from species S inner join animals A ON S.id = A.species_id where S.name = 'Pokemon';
     name    | species_name
 ------------+--------------
  Blossom    | Pokemon
@@ -178,7 +178,7 @@ select A.name, S.name as species_name from species S inner join animals A on S.i
 
 /*List all owners and their animals, remember to include those that don't own any animal.*/
 
-select O.id, full_name, owner_id, name from owners O left join animals A on O.id = A.owner_id;
+select O.id, full_name, owner_id, name from owners O left join animals A ON O.id = A.owner_id;
  id |    full_name    | owner_id |    name
 ----+-----------------+----------+------------
   1 | Sam Smith       |        1 | Agumon
@@ -257,3 +257,138 @@ ORDER BY no_of_animals_owned DESC;
  Jennifer Orwell |                   2
  Bob             |                   1
  Sam Smith       |                   1
+
+/*Who was the last animal seen by William Tatcher?*/
+
+ SELECT vet.name as vet_name, a.name as animal_name, date_of_visit 
+ FROM vets vet 
+ JOIN visits ON vet_id = vet.id 
+ JOIN animals a ON a.id = animal_id 
+ WHERE vet.name = 'William Tatcher' 
+ ORDER BY date_of_visit DESC;
+  vet_name       |  animal_name   | date_of_visit
+-----------------+---------+---------------
+ William Tatcher | Blossom | 2021-01-11
+ William Tatcher | Agumon  | 2020-05-24
+(2 rows)
+
+/*How many different animals did Stephanie Mendez see?*/
+ SELECT vet.name as vet_name, count(a.name) as animal_name 
+ FROM vets vet 
+ JOIN visits ON vet.id = vet_id 
+ JOIN animals a ON a.id = animal_id 
+ GROUP BY vet.name HAVING vet.name = 'Stephanie Mendez';
+     vet_name     | animal_name
+------------------+-------------
+ Stephanie Mendez |           3
+(1 row)
+/*List all vets and their specialties, including vets with no specialties.*/
+SELECT vet.name as vet_name, s.name as species_name 
+FROM vets vet 
+full JOIN specialization ON vet.id = vet_id 
+full JOIN species s ON s.id = species_id;
+     vet_name     | species_name
+------------------+--------------
+ William Tatcher  | Pokemon
+ Stephanie Mendez | Pokemon
+ Stephanie Mendez | Digimon
+ Jack Harkness    | Digimon
+ Maisy Smith      |
+(5 rows)
+/*List all animals that visited Stephanie Mendez between April 1st and August 30th, 2020.*/
+ SELECT vet.name as vet_name, a.name as animal_visited, visits.date_of_visit 
+ FROM vets vet 
+ JOIN visits ON vet.id = vet_id 
+ JOIN animals a ON a.id = animal_id 
+ where vet.name = 'Stephanie Mendez' and visits.date_of_visit between '2020-04-01' and '2020-09-30';
+     vet_name     | animal_visited | date_of_visit
+------------------+----------------+---------------
+ Stephanie Mendez | Agumon         | 2020-07-22
+(1 row)
+
+/*What animal has the most visits to vets?*/
+SELECT a.name as animal_name, count(animal_id) as number_of_visits 
+FROM animals a 
+JOIN visits ON animal_id = a.id 
+GROUP BY a.name ORDER BY number_of_visits DESC;
+ animal_name | number_of_visits
+-------------+------------------
+ Boarmon     |                4
+ Pikachu     |                3
+ Angemon     |                2
+ Agumon      |                2
+ Gabumon     |                1
+ Blossom     |                1
+ Squirtle    |                1
+ Devimon     |                1
+ Charmander  |                1
+(9 rows)
+/*Who was Maisy Smith's first visit?*/
+SELECT vet.name as vet_name, a.name as animal_name, date_of_visit 
+FROM vets vet 
+JOIN visits ON vet_id = vet.id 
+JOIN animals a ON a.id = animal_id 
+WHERE vet.name = 'Maisy Smith' ORDER BY date_of_visit;
+  vet_name   | animal_name | date_of_visit
+-------------+-------------+---------------
+ Maisy Smith | Boarmon     | 2019-01-24
+ Maisy Smith | Boarmon     | 2019-05-15
+ Maisy Smith | Pikachu     | 2020-01-05
+ Maisy Smith | Boarmon     | 2020-02-27
+ Maisy Smith | Pikachu     | 2020-03-08
+ Maisy Smith | Pikachu     | 2020-05-14
+ Maisy Smith | Boarmon     | 2020-08-03
+(7 rows)
+/*Details for most recent visit: animal information, vet information, and date of visit.*/
+SELECT a.name as animal_name, 
+       a.date_of_birth, 
+       a.escape_attempts, 
+       a.neutered, 
+       a.weight_kg, 
+       vet.name as vet_name, 
+       vet.age, 
+       vet.date_of_graduations, 
+       visits.date_of_visit 
+FROM animals a 
+JOIN visits ON a.id = animal_id 
+JOIN vets vet ON vet.id = vet_id ORDER BY visits.date_of_visit DESC;
+ animal_name | date_of_birth | escape_attempts | neutered | weight_kg |     vet_name     | age | date_of_graduations | date_of_visit
+-------------+---------------+-----------------+----------+-----------+------------------+-----+---------------------+---------------
+ Devimon     | 2017-05-12    |               5 | t        |        11 | Stephanie Mendez |  64 | 2008-05-04          | 2021-05-04
+ Charmander  | 2020-02-08    |               0 | f        |        11 | Jack Harkness    |  38 | 2008-06-08          | 2021-02-24
+ Gabumon     | 2018-09-15    |               2 | t        |         8 | Jack Harkness    |  38 | 2008-06-08          | 2021-02-02
+ Blossom     | 1998-10-13    |               3 | t        |        17 | William Tatcher  |  45 | 2000-04-23          | 2021-01-11
+ Angemon     | 2005-06-12    |               1 | t        |        45 | Jack Harkness    |  38 | 2008-06-08          | 2020-11-04
+ Angemon     | 2005-06-12    |               1 | t        |        45 | Jack Harkness    |  38 | 2008-06-08          | 2020-10-03
+ Boarmon     | 2005-06-07    |               7 | t        |      20.4 | Maisy Smith      |  26 | 2019-01-17          | 2020-08-03
+ Agumon      | 2020-02-02    |               0 | t        |     10.23 | Stephanie Mendez |  64 | 2008-05-04          | 2020-07-22
+ Agumon      | 2020-02-02    |               0 | t        |     10.23 | William Tatcher  |  45 | 2000-04-23          | 2020-05-24
+ Pikachu     | 2021-01-07    |               1 | f        |     15.04 | Maisy Smith      |  26 | 2019-01-17          | 2020-05-14
+ Pikachu     | 2021-01-07    |               1 | f        |     15.04 | Maisy Smith      |  26 | 2019-01-17          | 2020-03-08
+ Boarmon     | 2005-06-07    |               7 | t        |      20.4 | Maisy Smith      |  26 | 2019-01-17          | 2020-02-27
+ Pikachu     | 2021-01-07    |               1 | f        |     15.04 | Maisy Smith      |  26 | 2019-01-17          | 2020-01-05
+ Squirtle    | 1993-04-02    |               3 | f        |     12.13 | Stephanie Mendez |  64 | 2008-05-04          | 2019-09-29
+ Boarmon     | 2005-06-07    |               7 | t        |      20.4 | Maisy Smith      |  26 | 2019-01-17          | 2019-05-15
+ Boarmon     | 2005-06-07    |               7 | t        |      20.4 | Maisy Smith      |  26 | 2019-01-17          | 2019-01-24
+(16 rows)
+/*How many visits were with a vet that did not specialize in that animal's species?*/
+SELECT COUNT(*) FROM visits 
+JOIN animals ON animals.id = visits.animal_id 
+JOIN vets ON vets.id = visits.vet_id 
+JOIN specialization ON specialization.vet_id = visits.vet_id 
+WHERE animals.species_id != specialization.species_id;
+ count
+-------
+     5
+(1 row)
+/*What specialty should Maisy Smith consider getting? Look for the species she gets the most.*/
+SELECT vet.name as vet_name, species.name as specialization , COUNT(visits.animal_id) FROM visits 
+JOIN vets vet ON vet.id = visits.vet_id 
+JOIN animals ON animals.id = visits.animal_id 
+JOIN species ON species.id = animals.species_id 
+WHERE vet.name = 'Maisy Smith' GROUP BY vet.name, species.name ORDER BY count DESC;
+  vet_name   | specialization | count
+-------------+----------------+-------
+ Maisy Smith | Digimon        |     4
+ Maisy Smith | Pokemon        |     3
+(2 rows)
