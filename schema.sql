@@ -54,3 +54,6 @@ CREATE INDEX animal_visit ON visits(animal_id desc);
 
 -- To decrease the second query time
 CREATE INDEX vet_visit ON visits(vet_id asc);
+
+--  To decrease the third query:
+CREATE INDEX owner_id ON owners(email desc);
