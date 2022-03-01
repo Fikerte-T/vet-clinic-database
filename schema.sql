@@ -45,3 +45,15 @@ foreign key(animal_id) references animals(id),
 foreign key(vet_id) references vets(id)
 );
 ALTER TABLE visits add column date_of_visit date;
+
+-- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+-- To decrease the first query time
+CREATE INDEX animal_visit ON visits(animal_id desc);
+
+-- To decrease the second query time
+CREATE INDEX vet_visit ON visits(vet_id asc);
+
+--  To decrease the third query:
+CREATE INDEX owner_id ON owners(email desc);
