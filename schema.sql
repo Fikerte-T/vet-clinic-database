@@ -45,3 +45,6 @@ foreign key(animal_id) references animals(id),
 foreign key(vet_id) references vets(id)
 );
 ALTER TABLE visits add column date_of_visit date;
+
+-- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
