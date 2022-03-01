@@ -392,3 +392,7 @@ WHERE vet.name = 'Maisy Smith' GROUP BY vet.name, species.name ORDER BY count DE
  Maisy Smith | Digimon        |     4
  Maisy Smith | Pokemon        |     3
 (2 rows)
+
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
+EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';

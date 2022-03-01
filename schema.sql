@@ -51,3 +51,6 @@ ALTER TABLE owners ADD COLUMN email VARCHAR(120);
 
 -- To decrease the first query time
 CREATE INDEX animal_visit ON visits(animal_id desc);
+
+-- To decrease the second query time
+CREATE INDEX vet_visit ON visits(vet_id asc);
