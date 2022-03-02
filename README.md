@@ -16,7 +16,7 @@ This repository includes files with plain SQL that can be used to recreate a dat
 - Use [data.sql](./data.sql) to populate tables with sample data.
 - Use [queries.sql](./queries.sql) to run queries on a newly created database. 
 
-## Author
+## Authors
 
 👤 **Fikerte Tesfaye**
 
@@ -24,7 +24,11 @@ This repository includes files with plain SQL that can be used to recreate a dat
 - Twitter: [@tofikertesfaye](https://twitter.com/tofikertesfaye)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/fikerte-tesfaye-a68337216/)
 
+👤 **Houfaf Abdessalem**
 
+- GitHub: [@Houfaf Abdessalem](https://github.com/abdessalem1998)
+- Twitter: [@Houfaf Abdessalem](https://twitter.com/HAbdssalem)
+- LInkedIn: [@Houfaf Abdessalem](https://www.linkedin.com/in/houfaf-abdssalem-4682a3194/)
 ## Show your support
 
 Give a ⭐️ if you like this project!

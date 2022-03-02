@@ -1,7 +1,7 @@
 CREATE DATABASE clinic;
 
 CREATE TABLE patients (
-  id              INT  PRIMARY KET GENERATED ALWAYS AS IDENTITY,
+  id              INT  PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name            CHAR(100) NOT NULL, 
   date_of_birth   DATE NOT NULL
 );
