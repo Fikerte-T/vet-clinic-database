@@ -28,7 +28,7 @@ This repository includes files with plain SQL that can be used to recreate a dat
 
 - GitHub: [@Houfaf Abdessalem](https://github.com/abdessalem1998)
 - Twitter: [@Houfaf Abdessalem](https://twitter.com/HAbdssalem)
-- LInkedIn: [@Houfaf Abdessalem](https://www.linkedin.com/in/houfaf-abdssalem-4682a3194/)
+- LInkedIn: [@Houfaf Abdessalem](https://www.linkedin.com/in/houfafabdessalem/)
 ## Show your support
 
 Give a ⭐️ if you like this project!
