@@ -7,7 +7,7 @@ CREATE TABLE patients (
 );
 
 CREATE TABLE medical_histories (
-  id              INT  PRIMARY KET GENERATED ALWAYS AS IDENTITY,
+  id              INT  PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   admitted_at     TIMESTAMP, 
   patient_id      INT, 
   FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE RESTRICT ON UPDATE CASCADE, 
